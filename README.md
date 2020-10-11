@@ -1,1 +1,1 @@
-# Harvard University's CS50’s Web Programming with Python and JavaScript
+# Harvard University's Web Programming with Python and JavaScript
