@@ -1,1 +1,1 @@
-# web50
+# Harvard University's Web Programming with Python and JavaScript
