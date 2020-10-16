@@ -1,0 +1,53 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Create New Page
+{% endblock %}
+
+{% block body %}
+    <h1>Create New Page</h1>
+
+    {% if messages %}
+        <ul class="messages">
+    {% for message in messages %}
+        <div class="alert alert-danger mr-5 mt-3" style="text-align: center;" role="alert">{{ message }}</div>
+    {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div class="container">
+        <form method="POST">
+            {% csrf_token%}
+            <div class="form">
+                <div class="my-3">
+                    <label for="title">Title</label>
+                    <input
+                    type="text"
+                    id="title"
+                    class="form-control"
+                    name="title"
+                    placeholder="Title of the page"
+                    {% if title %}
+                    value="{{ title }}"
+                    {% endif %}
+                    />
+                </div>
+                <div>
+                    <label for="description">Description</label>
+                    <textarea
+                    class="form-control"
+                    id="description"
+                    cols="30"
+                    name="description"
+                    rows="10"
+                    placeholder="Include page markdown content"
+                    {% if description %}
+                    value="{{ description }}"
+                    {% endif %}>
+                    </textarea>
+                </div>
+            <input type="submit" value="Save" class="btn btn-success my-3" />
+            </div>
+        </form>
+    </div>
+{% endblock %}

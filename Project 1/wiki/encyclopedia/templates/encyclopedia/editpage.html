@@ -1,0 +1,46 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Edit Page
+{% endblock %}
+
+{% block body %}
+    <h1>Edit Page</h1>
+
+
+    <div class="container">
+        <form method="POST">
+            {% csrf_token%}
+            <div class="form">
+                <div class="my-3">
+                    <label for="title">Title</label>
+                    <input
+                    type="text"
+                    id="title"
+                    class="form-control"
+                    name="title"
+                    placeholder="Title of the page"
+                    {% if title %}
+                    value="{{ title }}"
+                    {% endif %}
+                    />
+                </div>
+                <div>
+                    <label for="description">Description</label>
+                    <textarea
+                    class="form-control"
+                    id="description"
+                    cols="30"
+                    name="description"
+                    rows="10"
+                    placeholder="Include page markdown content"
+                    {% if description %}
+                    value="{{ description }}"
+                    {% endif %}>
+                    </textarea>
+                </div>
+            <input type="submit" value="Save" class="btn btn-success my-3" />
+            </div>
+        </form>
+    </div>
+{% endblock %}

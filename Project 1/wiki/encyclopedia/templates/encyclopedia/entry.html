@@ -1,0 +1,9 @@
+{% extends "encyclopedia/layout.html" %} 
+
+{% block nav %}<a href="{% url 'editpage' title %}" class="badge badge-info">Edit This Page</a>{% endblock %} 
+
+
+{% block title %}{{ title }}{% endblock %} 
+
+
+{% block body %}{{ content | safe }}{% endblock %}
