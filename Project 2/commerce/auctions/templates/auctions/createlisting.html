@@ -1,0 +1,45 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Create Listing</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="itemtitle">Item Title</label>
+            <br>
+            <input id="itemtitle" type="text" name="itemtitle" required>
+        </div>
+        <div class="form-group">
+            <label for="itemdescription">Item Description</label>
+            <textarea class="form-control" id="itemdescription" name="itemdescription" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="initialprice">Initial Price</label>
+            <br>
+            <input id="initialprice" type="number" name="initialprice">
+        </div>
+        <div class="form-group">
+            <label for="imageurl">Image URL (Optional)</label>
+            <br>
+            <input id="imageurl" type="url" name="imageurl">
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select multiple class="form-control" id="category" name="category" required>
+              <option>Collectables</option>
+              <option>Electronics</option>
+              <option>Fashion</option>
+              <option>Health & Beauty</option>
+              <option>Home & Garden</option>
+              <option>Home Entertainment</option>
+              <option>Motors</option>
+              <option>Sport & Leisure</option>
+              <option>Toys</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+{% endblock %}

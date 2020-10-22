@@ -1,0 +1,72 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+      <div class="col-sm border">
+        <img src="{{ listing.image }}" class="img-fluid" alt="Responsive image">
+      </div>
+      <div class="col-sm">
+        <h2>{{ listing.title }}</h2>
+        <hr/>
+        {% if not itemsold %}
+        <p class="font-weight-bold">Current Bid: £{{ listing.currentprice }}</p>
+        {% else %}
+        {% endif %}
+        {% if user.is_authenticated %}
+        {% if not itemsold %}
+        <form method="POST">
+          {% csrf_token %}
+          <div class="form-group">
+            <input type="number" class="form-control" id="addbid" name="addbid" placeholder="Enter Bid">
+          </div>
+          <button type="submit" class="btn btn-primary" formaction="{% url 'addbid' listing.id %}">Bid</button>
+        </form>
+        <br>
+          {% if iteminwatchlist %}
+          <a href="{% url 'removewatchlist' listing.id %}"><button class="btn btn-danger">Remove from watchlist</button></a>
+          {% else %}
+          <a href="{% url 'addwatchlist' listing.id %}"><button class="btn btn-success">Add to watchlist</button></a>
+          {% endif %}
+        <br><br>
+          {% if seller %}
+          <a href="{% url 'closedauction' listing.id %}"><button class="btn btn-danger">End Auction</button></a>
+          {% endif %}
+        {% else %}
+        <p class="font-weight-bold">Sold For: £{{ closedauction.winningbid }}</p>
+        {% endif %}
+        {% endif %}
+        <hr/>
+        <p class="font-weight-bold">Description:</p>
+        <ul>
+            <li>Seller: {{ listing.seller }}</li>
+            <li>Category: {{ listing.category }}</li>
+        </ul>
+        {{ listing.description }}</p>
+      </div>
+    </div>
+</div>   
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      {% if user.is_authenticated %}
+      <h2 class="mt-3">Comments</h2>
+      {% if comments %}
+        {% for comment in comments %}
+        <li>Comment {{ comments.user }}: {{ comments.comment }}</li>
+        {% endfor %}
+      {% endif %}
+      <form method="POST" formaction="{% url 'comment' listing.id %}"> 
+        {% csrf_token %}
+        <div class="form-group">
+          <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Submit">
+        </div>
+      </form>
+      {% endif %}
+    </div>  
+  </div>
+</div> 
+{% endblock %}
