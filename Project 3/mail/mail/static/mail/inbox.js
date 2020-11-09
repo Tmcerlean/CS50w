@@ -111,7 +111,6 @@ function view_email(email) {
     // Mark unread emails as read
     if (email.read === false) {
       read(email);
-      console.log("This is triggering");
     }      
 
     // Listen for Reply button press

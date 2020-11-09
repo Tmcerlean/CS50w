@@ -1,0 +1,17 @@
+.media .avatar {
+    width: 64px;
+}
+
+#postlisting {
+    padding: 20px;
+}
+
+#createpostlisting {
+    padding: 20px;
+    background-color: rgb(241, 241, 241);
+}
+
+#profileinformation {
+    padding: 20px;
+    background-color: rgb(241, 241, 241);
+}

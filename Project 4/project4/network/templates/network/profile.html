@@ -1,0 +1,33 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+<div class="container media mt-3 border" id="profileinformation">
+    <div class="row">
+            <img class="d-flex rounded-circle avatar z-depth-1-half mr-3" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" alt="Generic placeholder image">
+            <div class="media-body">
+                <h5 class="mt-0 font-weight-bold blue-text"><a href="{% url 'profile' username=profileUser.username %}">{{ profileUser }}</a></h5>
+                {{ nofollowing }} Following {{ nofollowers }} Followers
+                {% if user.is_authenticated and currentlyFollowing == False and loggedInUser != profileUser %}
+                <a class="btn btn-primary" href="{% url 'follow' username=profileUser.username %}" role="button">Follow</a>
+                {% endif %}
+                {% if user.is_authenticated and currentlyFollowing == True and loggedInUser != profileUser %}
+                <a class="btn btn-danger" href="{% url 'unfollow' username=profileUser.username %}" role="button">Unfollow</a>
+                {% endif %}
+            </div>
+    </div>
+</div>
+{% for post in posts %}
+<div class="container media mt-3 border postbody" data-postid="{{ post.id }}">
+    <img class="d-flex rounded-circle avatar z-depth-1-half mr-3" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" alt="Generic placeholder image">
+    <div class="media-body">
+        <h5 class="mt-0 font-weight-bold blue-text"><a href="{% url 'profile' username=post.user.username %}">{{ post.user }}</a></h5>
+        <p class="posttext">{{ post.postContent }}</p>
+        <br>
+        {{ post.timePosted }}
+    </div>
+    {% if user.is_authenticated and loggedInUser == profileUser %}
+    <button type="button" class="btn btn-primary edit-button">Edit</button>
+    {% endif %}
+</div>
+{% endfor %}
+{% endblock %}

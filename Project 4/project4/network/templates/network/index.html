@@ -1,5 +1,38 @@
 {% extends "network/layout.html" %}
 
 {% block body %}
-    TODO
+    <h1>All Posts</h1>
+    {% if user.is_authenticated %}
+    <div class="container border" id="createpostlisting">
+        <p class="font-weight-bold">New Post</p>
+        <div class="row">
+            <div class="col-sm">
+                <form method="POST" action="{% url 'newPost' %}">
+                    {% csrf_token %}
+                    <div class="form-group media mt-3 shadow-textarea">
+                        <img class="d-flex rounded-circle avatar z-depth-1-half mr-3" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" alt="Generic placeholder image">
+                        <div class="media-body">
+                            <h5 class="mt-0 font-weight-bold blue-text"><a href="{% url 'profile' username=user.username %}">{{ user.username }}</a></h5>
+                            <div class="form-group basic-textarea rounded-corners">
+                                <textarea class="form-control" id="post" name="post" rows="3" placeholder="What's happening?"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary rounded-pill">Post</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% for post in posts %}
+    <div class="container media mt-3 border" id="postlisting">
+        <img class="d-flex rounded-circle avatar z-depth-1-half mr-3" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" alt="Generic placeholder image">
+        <div class="media-body">
+            <h5 class="mt-0 font-weight-bold blue-text"><a href="{% url 'profile' username=post.user.username %}">{{ post.user }}</a></h5>
+            {{ post.postContent }}
+            <br>
+            {{ post.timePosted }}
+        </div>
+    </div>
+    {% endfor %}
 {% endblock %}
