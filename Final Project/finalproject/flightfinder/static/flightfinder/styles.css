@@ -1,0 +1,51 @@
+@font-face {
+    font-family: 'Now';
+    font-style: normal;
+    font-weight: bold;
+    src: url('/static/flightfinder/fonts/now/Now-Bold.otf') format('opentype');
+}
+
+#mainhomepagediv {
+    position: relative;
+}
+
+#homepageh1 {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    text-align: right;
+    color: black;
+    font-family: Now;
+    font-weight: bold;
+}
+
+#homepagebox {
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    margin-left: -500px;
+    width: 992px;
+    height: 250px;
+    background-color: black;
+    border-radius: 5px;
+}
+
+#homepageform {
+    padding: 15px;
+}
+
+#homepageformlabel {
+    color: white;
+}
+
+#homepageformbutton {
+   background-image: linear-gradient(to bottom, #d66b29 0%, #FF512F  100%);
+   padding: 10px 35px;
+   text-align: center;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   border-radius: 10px;
+   display: block;
+   font-weight: bold;
+}
