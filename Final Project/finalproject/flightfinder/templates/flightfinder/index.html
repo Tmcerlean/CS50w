@@ -1,5 +1,9 @@
 {% extends "flightfinder/layout.html" %}
 
+{% block head %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+{% endblock %}
+
 {% block body %}
 <div id="mainhomepagediv">
     <div class="container-fluid px-0" id="mainhomepagediv">
@@ -13,45 +17,100 @@
         <h1 id="homepageh1">Where are you flying to?</h1>
         <div id="homepagebox">
             <div>
-                <form id="homepageform" method="POST">
+                <form action="{% url 'Flightfinder:flight_search' %}" method="POST" id="homepageform">
+                  {% csrf_token %} 
                     <div class="row">
                       <div class="col">
                         <label id="homepageformlabel">From</label>
-                        <input type="text" class="form-control" placeholder="Origin city" id="inputOrigin">
+                        <input type="text" class="form-control" placeholder="Origin City" name="Origin" id="inputOrigin" required>
                       </div>
                       <div class="col pb-3">
                         <label id="homepageformlabel">To</label>
-                        <input type="text" class="form-control" placeholder="Destination city">
+                        <input type="text" class="form-control" placeholder="Destination City" name="Destination" id="inputDestination" required>
                       </div>
                     </div>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-3">
                           <label id="homepageformlabel">Depart</label>
-                          <input type="date" class="form-control" placeholder="Origin city">
+                          <input type="date" class="form-control" name="Departuredate" id="idDeparturedate" required>
                         </div>
-                        <div class="col">
+                        <div class="col-3" id="returnDateDiv">
                             <label id="homepageformlabel">Return</label>
-                            <input type="date" class="form-control" placeholder="Destination city">
-                          </div>
-                        <div class="col-6">
+                            <input type="date" class="form-control" name="Returndate" id="idReturndate">
+                        </div>
+                        <div class="col-3">
                           <label id="homepageformlabel">Class</label>
-                          <select id="inputState" class="form-control">
+                          <select id="inputState" class="form-control" required>
                             <option selected>Economy</option>
                             <option>Business</option>
                             <option>First</option>
                           </select>
+                        </div>
+                        <div class="col">
+                          <div class="radio">
+                            <label><input type="radio" name="optradio" value="false" id="returnOption" checked> Return</label>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="radio">
+                            <label><input type="radio" name="optradio" value="true" id="oneWayOption"> One Way</label>
+                          </div>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col">
                         </div>
                         <div class="col-3 pt-3">
-                            <button class="btn float-right" id="homepageformbutton" type="submit">Search flights</button>
+                            <button class="btn float-right" name="Submit" id="homepageformbutton" type="submit">Search flights</button>
                         </div>
                       </div>
                   </form>
             </div>
         </div>
     </div>
-</div>    
+</div>
+{% if user.is_anonymous %}
+<div class="disable-outside-clicks" id="myFormDiv">
+  <div class="form-popup" id="myForm">
+    <form class="form-container">
+      <p id="homepagePopupHeaderText">Welcome!<p>
+      <p id="homepagePopupParagraphText">Please login to search for flights.</p>
+      <input type="text" placeholder="Email" name="email" required>
+      <input type="password" placeholder="Password" name="password" id="password" required>
+      <button type="submit" class="btn">Login</button>
+      <a href="#" class="close" onclick="closeForm()"></a>
+      <p id="homepagePopupSignupText">Don't have an account? <a href="{% url 'Flightfinder:register' %}" id="homepagePopupSignupLink">Sign up now</a></p>
+    </form>
+  </div>
+</div>
+{% endif %}
+<style>
+  .ui-autocomplete {
+  font-size: 14px;
+  text-align: left;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  background-clip: padding-box;
+}
+</style>
+<script>
+  // Amadeus origin airport search
+  $(document).ready(function () {
+      $("#inputOrigin").autocomplete({
+          source: "{% url 'Flightfinder:origin_airport_search' %}",
+          minLength: 1,
+          delay: 200,
+      });
+  });
+    // Amadeus destination airport search
+    $(document).ready(function () {
+      $("#inputDestination").autocomplete({
+          source: "{% url 'Flightfinder:origin_airport_search' %}",
+          minLength: 1,
+          delay: 200,
+      });
+  });
+  </script>
 {% endblock %}

@@ -1,3 +1,4 @@
+/* Main font */
 @font-face {
     font-family: 'Now';
     font-style: normal;
@@ -5,6 +6,7 @@
     src: url('/static/flightfinder/fonts/now/Now-Bold.otf') format('opentype');
 }
 
+/* Homepage styling */
 #mainhomepagediv {
     position: relative;
 }
@@ -23,9 +25,9 @@
     position: absolute;
     top: 200px;
     left: 50%;
-    margin-left: -500px;
+    margin-left: -496px;
     width: 992px;
-    height: 250px;
+    height: 246px;
     background-color: black;
     border-radius: 5px;
 }
@@ -40,7 +42,7 @@
 
 #homepageformbutton {
    background-image: linear-gradient(to bottom, #d66b29 0%, #FF512F  100%);
-   padding: 10px 35px;
+   padding: 10px 25px;
    text-align: center;
    transition: 0.5s;
    background-size: 200% auto;
@@ -48,4 +50,226 @@
    border-radius: 10px;
    display: block;
    font-weight: bold;
+}
+
+/* Empty div */
+.disable-outside-clicks {
+    display: none;
+    background-color:rgba(129, 104, 104, 0.4);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+/* Homepage pop-up form, hidden by default */
+.form-popup {
+    display: none;
+    position:absolute;
+    top:44%;
+    left:50%;
+    margin-left:-175px;   /* negative half of width above */
+    margin-top:-175px;   /* negative half of height above */
+  }
+  
+  /* Add styles to the homepage pop-up form container */
+  .form-container {
+    max-width: 350px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+  }
+  
+  /* Full-width input fields */
+  .form-container input[type=text], .form-container input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 5px 0;
+    border: none;
+    background: #f1f1f1;
+  }
+  
+  /* When the inputs get focus, do something */
+  .form-container input[type=text]:focus, .form-container input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+  
+  /* Set a style for the submit/login button */
+  .form-container .btn {
+    margin-top: 5px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:15px;
+    opacity: 0.5;
+    border-radius: 0px;
+  }
+   
+  /* Add some hover effects to buttons */
+  .form-container .btn:hover, .open-button:hover {
+    opacity: 0.8;
+  }
+
+  /* Close icon */
+  .close {
+    position: absolute;
+    right: 0px;
+    top: 10px;
+    width: 32px;
+    height: 10px;
+    opacity: 1;
+  }
+  .close:hover {
+    opacity: 1;
+  }
+  .close:before, .close:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 15px;
+    width: 2px;
+    background-color: black;
+  }
+  .close:before {
+    transform: rotate(45deg);
+  }
+  .close:after {
+    transform: rotate(-45deg);
+  }
+
+  /* Homepage pop-up text */
+  #homepagePopupHeaderText {
+      font-family: 'Now';
+      font-weight: bold;
+      font-size: 30px;
+      text-align: center;
+  }
+  #homepagePopupParagraphText {
+    font-family: 'Now';
+    font-size: small;
+    text-align: center;
+    }
+
+ #homepagePopupSignupText {
+     margin-bottom: -1px;
+     text-align: center;
+ }   
+
+ #homepagePopupSignupLink {
+     color: #FF512F;
+     font-weight: bold;
+    }
+
+
+/* Register Page */
+#mainRegisterDiv {
+    position: relative;
+}
+
+#registerH1 {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    text-align: right;
+    color: black;
+    font-family: Now;
+    font-weight: bold;
+}
+#registerBox {
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    margin-left: -248px;
+    width: 496px;
+    height: 237px;
+    background-color: black;
+    border-radius: 5px;
+}
+
+#registerForm {
+    padding: 15px;
+}
+
+#registerFormText {
+    color: white;
+    padding-top: 9px;
+}
+
+#registerFormLinkText {
+    color: #FF512F;
+    font-weight: bold;
+   }
+
+#registerFormButton {
+    background-image: linear-gradient(to bottom, #d66b29 0%, #FF512F  100%);
+    padding: 10px 25px;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    border-radius: 10px;
+    display: block;
+    font-weight: bold;
+}
+
+/* Login Page */
+#mainLoginDiv {
+    position: relative;
+}
+
+#loginH1 {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    text-align: right;
+    color: black;
+    font-family: Now;
+    font-weight: bold;
+}
+#loginBox {
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    margin-left: -248px;
+    width: 496px;
+    height: 185px;
+    background-color: black;
+    border-radius: 5px;
+}
+
+#loginForm {
+    padding: 15px;
+}
+
+#loginFormText {
+    color: white;
+    padding-top: 9px;
+}
+
+#loginFormLinkText {
+    color: #FF512F;
+    font-weight: bold;
+   }
+
+#loginFormButton {
+    background-image: linear-gradient(to bottom, #d66b29 0%, #FF512F  100%);
+    padding: 10px 25px;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    border-radius: 10px;
+    display: block;
+    font-weight: bold;
+}
+
+.radio {
+    margin-top: 38px;
+    margin-left: 0px;
+    color: white;
 }

@@ -1,7 +1,11 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 import datetime
 
 # Create your models here.
+class User(AbstractUser):
+    pass
+
 class Airport(models.Model):
     code = models.CharField(max_length=3)
     city = models.CharField(max_length=64)
@@ -24,6 +28,7 @@ class Flight(models.Model):
         return f"{self.id}: {self.origin} to {self.destination}"
 
 class Passenger(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     first = models.CharField(max_length=64)
     last = models.CharField(max_length=64)
     flights = models.ManyToManyField(Flight, blank=True, related_name="passengers")
